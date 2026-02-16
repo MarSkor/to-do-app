@@ -1,0 +1,55 @@
+@use "config" as *;
+
+:root {
+  --bg-app: var(--clr-navy-950);
+  --clr-font-heading: var(--clr-gray-50);
+  --clr-font-body: var(--clr-gray-300);
+  --clr-font-body-theme: var(--clr-gray-50);
+  --clr-list-item: var(--clr-navy-900);
+  --clr-border: var(--clr-navy-850);
+  --clr-text-muted: var(--clr-gray-600);
+  --clr-text-muted-darker: color-mix(in srgb, var(--clr-purple-600), black 20%);
+  --clr-btn-pagination: color-mix(in srgb, var(--clr-navy-950), black 30%);
+  --clr-btn: var(--clr-navy-950);
+  --clr-btn-text: var(--clr-gray-50);
+  --clr-btn-text-dark: var(--clr-navy-950);
+  --clr-btn-auth: var(--clr-navy-950);
+  --clr-btn-auth-hover: var(--clr-navy-950);
+  --clr-btn-auth-text: var(--clr-gray-50);
+  --clr-form: var(--clr-navy-900);
+  --clr-form-field: var(--clr-navy-900);
+  --clr-error: var(--clr-red-100);
+  --clr-link: var(--clr-blue-200);
+  --clr-link-category: var(--clr-gray-50);
+
+  // background image
+  --bg-main: url(#{$path-bg-desktop-dark});
+  @media (max-width: $breakpoint-md) {
+    --bg-main: url(#{$path-bg-mobile-dark});
+  }
+}
+
+[data-theme="light"] {
+  --bg-app: var(--clr-purple-100);
+  --clr-font-heading: var(--clr-gray-50);
+  --clr-font-body: var(--clr-navy-950);
+  --clr-font-body-theme: var(--clr-gray-950);
+  --clr-list-item: var(--clr-gray-50);
+  --clr-border: var(--clr-gray-300);
+  --clr-text-muted: var(--clr-gray-600);
+  --clr-text-muted-darker: color-mix(in srgb, var(--clr-purple-600), white 40%);
+  --clr-btn: var(--clr-gray-50);
+  --clr-btn-text-dark: var(--clr-gray-50);
+  --clr-btn-text: var(--clr-navy-950);
+  --clr-form: var(--clr-gray-50);
+  --clr-form-field: var(--clr-gray-50);
+  --clr-error: var(--clr-red-900);
+  --clr-link: var(--clr-blue-900);
+  --clr-link-category: var(--clr-navy-950);
+
+  // background image
+  --bg-main: url(#{$path-bg-desktop-light});
+  @media (max-width: $breakpoint-md) {
+    --bg-main: url(#{$path-bg-mobile-light});
+  }
+}

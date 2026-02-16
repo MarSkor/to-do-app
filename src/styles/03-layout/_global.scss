@@ -1,0 +1,80 @@
+@use "../01-base/config" as *;
+
+/* 
+====================================================
+Global styles 
+====================================================
+*/
+
+body {
+  background-color: var(--bg-app);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--ff-heading), sans-serif;
+  color: var(--clr-font-heading);
+}
+
+main {
+  font-family: var(--ff-body), sans-serif;
+  font-weight: 300;
+  font-size: var(--type-base);
+  color: var(--clr-font-body);
+}
+
+/* 
+====================================================
+Container
+====================================================
+*/
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100svh;
+  background-image: var(--bg-main);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.container {
+  max-width: var(--breakpoint-md);
+  width: 100%;
+  padding: 0px 24px;
+  margin-top: 20px;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 16px;
+  }
+}
+
+/* 
+====================================================
+Errors
+====================================================
+*/
+
+.global-form-error,
+.inputHasError {
+  color: var(--clr-error);
+  font-size: var(--type-sm);
+}
+
+.todo__form-wrapper .inputHasError {
+  padding: 8px 24px;
+}
+
+.auth-form .global-form-error {
+  background-color: var(--clr-list-item);
+  margin-bottom: 16px;
+}
+
+.todo__list-section .global-form-error {
+  margin-top: 16px;
+  background-color: var(--clr-list-item);
+  padding: 8px 24px;
+  border-radius: var(--border-radius-sm);
+}

@@ -1,0 +1,25 @@
+.todo__pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 16px;
+
+  &--btn {
+    border: none;
+    background: var(--clr-btn-pagination);
+    color: var(--clr-btn-text-dark);
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &--info,
+  &--btn {
+    font-size: var(--type-sm);
+  }
+}

@@ -1,0 +1,94 @@
+@use "./config" as *;
+
+// https://www.fluid-type-scale.com/
+
+/* 
+====================================================
+Mapping font sizes
+====================================================
+*/
+
+$fluid-font-sizes: (
+  "xs": clamp(0.64rem, 0.13vi + 0.61rem, 0.71rem),
+  "sm": clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem),
+  "base": clamp(1rem, 0.34vi + 0.91rem, 1.19rem),
+  "md": clamp(1.25rem, 0.61vi + 1.1rem, 1.58rem),
+  "lg": clamp(1.56rem, 1vi + 1.31rem, 2.11rem),
+  "xl": clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem),
+);
+
+$static-font-sizes-min: (
+  "xs": 0.64rem,
+  "sm": 0.8rem,
+  "base": 1rem,
+  "md": 1.25rem,
+  "lg": 1.56rem,
+  "xl": 1.95rem,
+);
+
+$static-font-sizes-max: (
+  "xs": 0.71rem,
+  "sm": 0.89rem,
+  "base": 1.19rem,
+  "md": 1.58rem,
+  "lg": 2.11rem,
+  "xl": 2.81rem,
+);
+
+/* 
+====================================================
+For browsers that don't support clamp
+====================================================
+*/
+
+@supports (font-size: clamp(1rem, 1vi, 1rem)) {
+  :root {
+    @each $key, $value in $fluid-font-sizes {
+      --type-#{$key}: #{$value};
+    }
+  }
+}
+
+@supports not (font-size: clamp(1rem, 1vi, 1rem)) {
+  :root {
+    @each $key, $value in $static-font-sizes-min {
+      --type-#{$key}: #{$value};
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    :root {
+      @each $key, $value in $static-font-sizes-max {
+        --type-#{$key}: #{$value};
+      }
+    }
+  }
+}
+
+/* 
+====================================================
+Applying them to the map of headings
+====================================================
+*/
+
+$heading-styles: (
+  h1: var(--type-xl),
+  h2: var(--type-lg),
+  h3: var(--type-md),
+  h4: var(--type-base),
+  h5: var(--type-sm),
+);
+
+/* 
+====================================================
+Applying the styles (sizes) to the headings. 
+====================================================
+*/
+
+@each $heading, $size in $heading-styles {
+  #{$heading} {
+    font-size: #{$size};
+    line-height: var(--line-height);
+    font-family: var(--ff-heading);
+  }
+}

@@ -1,0 +1,118 @@
+@use "../01-base/config" as *;
+.header {
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 1rem;
+
+    grid-template-areas:
+      "one three"
+      "two two";
+
+    .grid-item-1 {
+      grid-area: one;
+    }
+
+    .grid-item-2 {
+      grid-area: two;
+    }
+
+    .grid-item-3 {
+      grid-area: three;
+      text-align: right;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-areas: "one two three";
+      align-items: center;
+    }
+  }
+
+  &__action-section--btn-group {
+    display: flex;
+    gap: 8px;
+
+    @media (min-width: $breakpoint-md) {
+      justify-content: space-between;
+    }
+
+    .btn {
+      width: 100%;
+      cursor: pointer;
+      font-weight: 600;
+      border: transparent;
+      padding: 12px 8px;
+      border-radius: var(--border-radius-sm);
+      font-size: var(--type-sm);
+
+      @media (min-width: $breakpoint-md) {
+        padding: 8px;
+      }
+
+      &__delete-account {
+        color: var(--clr-btn);
+        background-color: var(--clr-error);
+      }
+
+      &__logout {
+        background-color: var(--clr-btn);
+        color: var(--clr-btn-text);
+      }
+    }
+  }
+}
+
+.toggle-theme {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s ease;
+
+  &__toggle-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    transition:
+      transform 0.5s cubic-bezier(0.2, 1, 0.3, 1),
+      opacity 0.3s ease;
+    transform: translate(-100%, 20%) rotate(-120deg) scale(0.5) translateZ(0);
+  }
+}
+
+[data-theme="light"] {
+  .toggle-theme__icon-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+
+  .toggle-theme__icon-sun {
+    opacity: 0;
+    transform: translate(50%, 20%) rotate(120deg) scale(0.5);
+  }
+}
+
+[data-theme="dark"] {
+  .toggle-theme__icon-sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  .toggle-theme__icon-moon {
+    opacity: 0;
+    transform: translate(-100%, 20%) rotate(-120deg) scale(0.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle-theme__toggle-icon {
+    transition: none;
+  }
+}

@@ -1,0 +1,39 @@
+@use "colors" as *;
+@use "config" as *;
+
+:root {
+  --breakpoint-sm: #{$breakpoint-sm};
+  --breakpoint-md: #{$breakpoint-md};
+  --breakpoint-lg: #{$breakpoint-lg};
+
+  --ff-body: #{$font-family};
+  --ff-heading: #{$font-family};
+  --line-height: #{$line-height};
+
+  --clr-blue-200: #{$blue-200};
+  --clr-blue-500: #{$blue-500};
+  --clr-blue-900: #{$blue-900};
+
+  --clr-navy-950: #{$navy-950};
+  --clr-navy-900: #{$navy-900};
+  --clr-navy-850: #{$navy-850};
+
+  --clr-purple-100: #{$purple-100};
+  --clr-purple-300: #{$purple-300};
+  --clr-purple-600: #{$purple-600};
+  --clr-purple-700: #{$purple-700};
+  --clr-purple-800: #{$purple-800};
+
+  --clr-gray-50: #{$gray-50};
+  --clr-gray-300: #{$gray-300};
+  --clr-gray-600: #{$gray-600};
+
+  --clr-red-100: #{$red-100};
+  --clr-red-900: #{$red-900};
+
+  --clr-check-bg: #{$grad-check};
+
+  --border-radius-sm: 6px;
+
+  --box-shadow-lg: 0px 8px 29px -7px rgba(0, 0, 0, 0.34);
+}
