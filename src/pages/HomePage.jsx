@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import errorHandler from "../utils/errorHandler";
 import Pagination from "../components/Pagination";
 
-const Home = () => {
+const HomePage = () => {
   const [page, setPage] = useState(1);
   const [items, setItems] = useState({
     data: [],
@@ -55,13 +55,9 @@ const Home = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      // const query = filter === "all" ? "" : `filter=${filter}`;
-      // const res = await api.get(`/todos?${query}`);
-      // setItems(res.data);
-
       const queryParams = new URLSearchParams({
         page: page,
-        limit: 10,
+        limit: 10, //matching backend
         filter: filter === "all" ? "" : filter,
       }).toString();
 
@@ -170,14 +166,6 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      // setItems((prev) => ({
-      //   ...prev,
-      //   data: prev.data.filter((item) => item.id !== id),
-      //   pagination: {
-      //     ...prev.pagination,
-      //     totalItems: (prev.pagination?.totalItems || 0) - 1,
-      //   },
-      // }));
       await api.delete(`/todos/${id}`);
       toast.success("Task Deleted.");
       fetchData();
@@ -191,9 +179,10 @@ const Home = () => {
   const clearCompleted = async () => {
     try {
       setItems((prev) => {
+        const remainingTodos = prev.data.filter((item) => !item.isComplete);
         return {
           ...prev,
-          data: prev.data.filter((item) => !item.isComplete),
+          data: remainingTodos,
           pagination: {
             ...prev.pagination,
             totalItems: remainingTodos.length,
@@ -309,4 +298,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

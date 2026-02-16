@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import Home from "./pages/home";
+import HomePage from "./pages/HomePage";
 import Layout from "./components/Layout";
 import PublicRoute from "./components/PublicRoute";
 import AuthForm from "./components/AuthForm";
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/todos",
-            element: <Home />,
+            element: <HomePage />,
           },
         ],
       },
