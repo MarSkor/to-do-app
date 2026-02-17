@@ -226,7 +226,6 @@ const HomePage = () => {
             />
           </label>
           <input
-            autoFocus
             autoComplete="off"
             className="todo__text-input"
             type="text"
