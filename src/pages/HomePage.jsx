@@ -114,6 +114,7 @@ const HomePage = () => {
   };
 
   const onSubmit = async (value) => {
+    setGlobalError(null);
     if (isSubmitting || !value.content?.trim()) return;
     try {
       const res = await api.post("/todos", value);
@@ -127,10 +128,15 @@ const HomePage = () => {
             totalItems: (prevState.pagination?.totalItems || 0) + 1,
           },
         }));
-
         toast.success("Task created successfully!");
       }
     } catch (error) {
+      if (error.response?.status === 403) {
+        const message = error.response.data.message;
+        toast.error(message);
+        return;
+      }
+
       if (error.response?.data?.errors) {
         error.response.data.errors.forEach((validationError) => {
           setError(validationError.path, {
@@ -220,6 +226,8 @@ const HomePage = () => {
             />
           </label>
           <input
+            autoFocus
+            autoComplete="off"
             className="todo__text-input"
             type="text"
             placeholder="Create a new todo..."
@@ -231,7 +239,6 @@ const HomePage = () => {
                 message: "Content is too long (Max 240).",
               },
             })}
-            autoComplete="off"
             onKeyDown={(e) => {
               if (e.key === "Enter" && isSubmitting) {
                 e.preventDefault();
@@ -251,6 +258,10 @@ const HomePage = () => {
       </section>
 
       <ul className="todo__list-wrapper">
+        {!isLoading && items.data.length === 0 && (
+          <p className="todo__filtering">No items found.</p>
+        )}
+
         {isLoading && items.data.length === 0 ? (
           <p className="todo__filtering">Loading items...</p>
         ) : (
@@ -274,10 +285,6 @@ const HomePage = () => {
               ))}
             </SortableContext>
           </DndContext>
-        )}
-
-        {!isLoading && items.data.length === 0 && (
-          <p className="todo__filtering">No items found.</p>
         )}
       </ul>
 
