@@ -34,7 +34,7 @@
     gap: 8px;
 
     @media (min-width: $breakpoint-md) {
-      justify-content: space-between;
+      justify-content: space-around;
     }
 
     .btn {
@@ -48,6 +48,7 @@
 
       @media (min-width: $breakpoint-md) {
         padding: 8px;
+        width: auto;
       }
 
       &__delete-account {
